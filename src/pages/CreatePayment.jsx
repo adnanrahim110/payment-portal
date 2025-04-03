@@ -7,6 +7,8 @@ const CreatePayment = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
   const paymentType = location.state?.paymentType || "";
 
   const [formData, setFormData] = useState({
@@ -29,9 +31,7 @@ const CreatePayment = () => {
   useEffect(() => {
     const fetchPaymentAccounts = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/payment-accounts"
-        );
+        const response = await fetch(`${API_BASE_URL}/api/payment-accounts`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -83,7 +83,7 @@ const CreatePayment = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/payments", {
+      const response = await fetch(`${API_BASE_URL}/api/payments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

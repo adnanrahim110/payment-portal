@@ -12,7 +12,7 @@ const LinkGenerate = () => {
 
   useEffect(() => {
     if (paymentId) {
-      setPaymentLink(`http://localhost:5173/checkout/${paymentId}`);
+      setPaymentLink(`${window.location.origin}/checkout/${paymentId}`);
     }
   }, [paymentId]);
 

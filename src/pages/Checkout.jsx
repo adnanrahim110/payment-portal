@@ -16,12 +16,12 @@ const Checkout = () => {
   const [stripe, setStripe] = useState(null);
   const [paymentApiDetails, setPaymentApiDetails] = useState(null);
 
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
   useEffect(() => {
     const fetchPaymentDetails = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/payments/${id}`
-        );
+        const response = await fetch(`${API_BASE_URL}/api/payments/${id}`);
         const data = await response.json();
 
         if (data.success) {
@@ -55,7 +55,7 @@ const Checkout = () => {
     try {
       // Mark the payment as completed
       const response = await fetch(
-        `http://localhost:5000/api/payments/complete/${id}`,
+        `${API_BASE_URL}/api/payments/complete/${id}`,
         {
           method: "POST",
           headers: {
@@ -82,7 +82,7 @@ const Checkout = () => {
 
   const fetchPaymentDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/payments/${id}`);
+      const response = await fetch(`${API_BASE_URL}/api/payments/${id}`);
       const data = await response.json();
 
       if (data.success) {
@@ -107,22 +107,19 @@ const Checkout = () => {
 
     try {
       // Create a payment intent on the server
-      const response = await fetch(
-        "http://localhost:5000/api/payments/stripe",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            amount: paymentDetails.amount,
-            currency: paymentDetails.currency,
-            description: paymentDetails.description,
-            payment_account: paymentDetails.payment_account,
-            secureId: id,
-          }),
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/api/payments/stripe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: paymentDetails.amount,
+          currency: paymentDetails.currency,
+          description: paymentDetails.description,
+          payment_account: paymentDetails.payment_account,
+          secureId: id,
+        }),
+      });
 
       const data = await response.json();
 
