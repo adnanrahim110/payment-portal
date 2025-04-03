@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-primary: "Open Sans", sans-serif;
+
+  --color-primary: #063ec3;
+  --color-gray: gray;
+}
+
+@layer base {
+
+  select,
+  input:not([type="submit"], .gnLink),
+  textarea {
+    border: 1px solid #bfbbbb;
+    padding-left: 10px;
+    width: 100%;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 5px;
+    resize: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input:disabled {
+    background-color: #f4f4f4;
+    cursor: not-allowed;
+    font-size: 16px;
+  }
+
+  select:focus,
+  input:not(.gnLink):focus,
+  textarea:focus {
+    border-color: #063ec3;
+    box-shadow: 0 0 0 3px rgba(0, 62, 195, 0.1);
+  }
+
+  select,
+  input:not(.gnLink) {
+    height: 40px;
+  }
+
+  button {
+    width: 100%;
+    padding: 8px 20px;
+    color: white;
+    font-weight: 600;
+    background-color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    transition: all 0.3s;
+  }
+
+  button:hover {
+    color: var(--color-primary);
+    background-color: white;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply mx-auto py-0 px-12 w-full
+  }
+
+  .container:not([class*='mx-']):not([class*='my-']) {
+    @apply my-0;
+  }
+}
