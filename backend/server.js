@@ -5,7 +5,7 @@ import express from "express";
 import mongoose from "mongoose";
 import paymentRoutes from "./routes/paymentRoutes.js";
 
-dotenv.config();
+dotenv.config({ path: "../.env" });
 const app = express();
 
 app.use(cors());
