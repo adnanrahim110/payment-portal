@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Checkout from "./pages/CheckOut.jsx";
+import Checkout from "./pages/Checkout.jsx";
 import CreatePayment from "./pages/CreatePayment.jsx";
 import Home from "./pages/Home.jsx";
 import LinkGenerate from "./pages/LinkGenerate.jsx";
